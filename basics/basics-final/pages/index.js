@@ -23,7 +23,7 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
+              <Link href={`/posts/${id}`}>{title || id}</Link>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
@@ -38,6 +38,7 @@ export default function Home({ allPostsData }) {
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  console.log('\n** ---  allPostsData  --- **\n\n', allPostsData) // wsp-log
   return {
     props: {
       allPostsData,
